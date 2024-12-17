@@ -1,0 +1,40 @@
+body {
+    margin: 50px;
+    background-color: #f8f9fa;
+}
+
+/* for heading */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* for input task */
+.input-task {
+    width: 94%;
+    display: inline;
+}
+
+/* for add task button */
+.add-task {
+    margin-left: 10px;
+}
+
+/* for task item */
+#tasklist {
+    margin-top: 20px;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+}
+.btn {
+    margin-left: 5px;
+}
