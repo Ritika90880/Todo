@@ -10,13 +10,13 @@ addButton.addEventListener('click', addTask);
 
 // Function to add a new task
 function addTask() {
-    const task = taskInput.value.trim(); 
-    if (task) { 
-        createTaskElement(task); 
-        taskInput.value = ''; 
-        saveTasks(); 
+    const task = taskInput.value.trim();
+    if (task) {
+        createTaskElement(task);
+        taskInput.value = '';
+        saveTasks();
     } else {
-        alert('Please enter a task'); 
+        alert('Please enter a task');
     }
 }
 
@@ -24,15 +24,15 @@ function addTask() {
 function createTaskElement(task) {
     const taskElement = document.createElement('li'); //create list item for task
     taskElement.className = 'task-item';
-    taskElement.textContent = task; 
+    taskElement.textContent = task;
 
     const deleteButton = document.createElement('button'); // Create a delete button
-    deleteButton.textContent = 'Delete'; 
-    deleteButton.className = 'btn btn-danger btn-sm delete-button'; 
+    deleteButton.textContent = 'Delete';
+    deleteButton.className = 'btn btn-danger btn-sm delete-button';
 
     const editButton = document.createElement('button'); // Create an edit button
-    editButton.textContent = 'Edit'; 
-    editButton.className = 'btn btn-warning btn-sm edit-button'; 
+    editButton.textContent = 'Edit';
+    editButton.className = 'btn btn-warning btn-sm edit-button';
 
     // Append the edit and delete buttons to the task element
     taskElement.appendChild(editButton);
@@ -40,17 +40,19 @@ function createTaskElement(task) {
     taskList.appendChild(taskElement);
 
     // Add an event listener to the delete button
-    deleteButton.addEventListener('click', function() {
-        taskList.removeChild(taskElement); 
-        saveTasks(); 
+    deleteButton.addEventListener('click', function () {
+        taskList.removeChild(taskElement);
+        saveTasks();
     });
 
     // Add an event listener to the edit button
-    editButton.addEventListener('click', function() {
+    editButton.addEventListener('click', function () {
         const updatedTask = prompt('Edit task', taskElement.firstChild.textContent);
-        if (updatedTask) { 
-            taskElement.firstChild.textContent = updatedTask; // Update the task text
-            saveTasks(); // Call the function to save the updated task list
+        if (updatedTask && updatedTask.trim()) {
+            taskElement.firstChild.textContent = updatedTask.trim();
+            saveTasks();
+        } else if (updatedTask !== null) {
+            alert('Please enter a task');
         }
     });
 }
@@ -70,11 +72,11 @@ function saveTasks() {
 
 // Function to load tasks from local storage and display them
 function loadTasks() {
-    const allTasks = localStorage.getItem('tasks'); 
+    const allTasks = localStorage.getItem('tasks');
     const tasks = allTasks ? JSON.parse(allTasks) : []; // Parse the JSON string into an array or use an empty array
 
     // Iterate over each task and create its corresponding element in the task list
     tasks.forEach(task => {
-        createTaskElement(task); 
+        createTaskElement(task);
     });
 }
